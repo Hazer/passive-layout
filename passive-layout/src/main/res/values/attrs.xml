@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PassiveLayout">
+        <attr name="passive" format="boolean"/>
+        <attr name="passive_vertical" format="boolean"/>
+        <attr name="passive_horizontal" format="boolean"/>
+    </declare-styleable>
+</resources>
