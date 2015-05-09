@@ -20,7 +20,7 @@ Use this library when you want a View to fill its parent, but not expand its bou
 
     <!-- This view will fill its parent, but not expand it -->
     <TextView
-        app:passive_vertical="true"
+        app:passive_height="true"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"/>
 
