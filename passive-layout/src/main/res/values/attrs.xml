@@ -2,7 +2,7 @@
 <resources>
     <declare-styleable name="PassiveLayout">
         <attr name="passive" format="boolean"/>
-        <attr name="passive_vertical" format="boolean"/>
-        <attr name="passive_horizontal" format="boolean"/>
+        <attr name="passive_height" format="boolean"/>
+        <attr name="passive_width" format="boolean"/>
     </declare-styleable>
 </resources>

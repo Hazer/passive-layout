@@ -15,41 +15,39 @@ import android.view.ViewGroup.LayoutParams;
 public class PassiveDimensions {
 
     private final LayoutParams mParams;
-    public final boolean passiveHorizontal;
-    public final boolean passiveVertical;
+    private final boolean mPassiveWidth;
+    private final boolean mPassiveHeight;
 
-    public int trueWidth = LayoutParams.MATCH_PARENT;
-    public int trueHeight = LayoutParams.MATCH_PARENT;
+    private int mTrueWidth = LayoutParams.MATCH_PARENT;
+    private int mTrueHeight = LayoutParams.MATCH_PARENT;
 
     public PassiveDimensions(LayoutParams lp, Context c, AttributeSet attrs) {
         mParams = lp;
         TypedArray arr = c.obtainStyledAttributes(attrs, R.styleable.PassiveLayout);
-
         boolean passive = arr.getBoolean(R.styleable.PassiveLayout_passive, false);
-        passiveHorizontal = arr.getBoolean(R.styleable.PassiveLayout_passive_horizontal, passive);
-        passiveVertical = arr.getBoolean(R.styleable.PassiveLayout_passive_vertical, passive);
-
+        mPassiveWidth = arr.getBoolean(R.styleable.PassiveLayout_passive_width, passive);
+        mPassiveHeight = arr.getBoolean(R.styleable.PassiveLayout_passive_height, passive);
         arr.recycle();
         updateTrueDimensions();
     }
 
     public PassiveDimensions(LayoutParams lp) {
         mParams = lp;
-        passiveHorizontal = false;
-        passiveVertical = false;
+        mPassiveWidth = false;
+        mPassiveHeight = false;
         updateTrueDimensions();
     }
 
     public PassiveDimensions(LayoutParams lp, PassiveDimensions other) {
         mParams = lp;
-        this.passiveHorizontal = other != null && other.passiveHorizontal;
-        this.passiveVertical = other != null && other.passiveVertical;
+        mPassiveWidth = other != null && other.mPassiveWidth;
+        mPassiveHeight = other != null && other.mPassiveHeight;
         updateTrueDimensions();
     }
 
     void updateTrueDimensions() {
-        trueWidth = mParams.width;
-        trueHeight = mParams.height;
+        mTrueWidth = mParams.width;
+        mTrueHeight = mParams.height;
     }
 
     static void onMeasure(ViewGroup vg, int widthMeasureSpec, int heightMeasureSpec, MeasureDelegate delegate) {
@@ -59,10 +57,10 @@ public class PassiveDimensions {
             View view = vg.getChildAt(i);
             LayoutParams lp = view.getLayoutParams();
             PassiveDimensions dim = ((PassiveLayoutParams) lp).getPassiveDimensions();
-            if (dim.passiveHorizontal) {
+            if (dim.mPassiveWidth) {
                 lp.width = 0;
             }
-            if (dim.passiveVertical) {
+            if (dim.mPassiveHeight) {
                 lp.height = 0;
             }
         }
@@ -75,8 +73,8 @@ public class PassiveDimensions {
             View view = vg.getChildAt(i);
             LayoutParams lp = view.getLayoutParams();
             PassiveDimensions dim = ((PassiveLayoutParams) lp).getPassiveDimensions();
-            lp.width = dim.trueWidth;
-            lp.height = dim.trueHeight;
+            lp.width = dim.mTrueWidth;
+            lp.height = dim.mTrueHeight;
         }
 
         // Update MeasureSpec to be exact.
