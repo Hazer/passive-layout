@@ -15,7 +15,7 @@ Simply add a passive layout to your xml file, then mark any of its children with
     <!-- This view will expand its parent to fit the image -->
     <ImageView
         android:src="@drawable/something"
-        android:layout_width="48dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"/>
 
