@@ -26,7 +26,7 @@ import android.widget.LinearLayout;
 import com.levelmoney.passivelayout.PassiveDimensions.MeasureDelegate;
 import com.levelmoney.passivelayout.PassiveDimensions.PassiveLayoutParams;
 
-public class PassiveLinearLayout extends LinearLayout {
+public class PassiveLinearLayout extends LinearLayout implements MeasureDelegate {
 
     public static final String TAG = "PassiveFillLayout";
 
@@ -63,7 +63,7 @@ public class PassiveLinearLayout extends LinearLayout {
         @Override
         protected void setBaseAttributes(TypedArray a, int widthAttr, int heightAttr) {
             super.setBaseAttributes(a, widthAttr, heightAttr);
-            mPassive.updateTrueDimensions();
+            if (mPassive != null) mPassive.updateTrueDimensions();
         }
 
         @Override
@@ -98,14 +98,13 @@ public class PassiveLinearLayout extends LinearLayout {
     }
 
     @Override
-    @SuppressLint("WrongCall")
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        PassiveDimensions.onMeasure(this, widthMeasureSpec, heightMeasureSpec,
-                new MeasureDelegate() {
-                    @Override
-                    public void run(int widthMeasureSpec, int heightMeasureSpec) {
-                        PassiveLinearLayout.super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-                    }
-                });
+        PassiveDimensions.onMeasure(this, widthMeasureSpec, heightMeasureSpec, this);
+    }
+
+    @Override
+    @SuppressLint("WrongCall")
+    public void run(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 }
