@@ -5,6 +5,7 @@ Android layouts that selectively respect `match_parent`
 Use this library when you want a View to fill its parent, but not expand its bounds.
 
 ### Usage
+Simply add a passive layout to your xml file, then mark any of its children with `passive_height` or `passive_width` as appropriate. Those children will no longer expand the parent in that dimension. You can also use `passive` to effect both dimensions.
 
 ```xml
 <com.levelmoney.passivelayout.PassiveFrameLayout
