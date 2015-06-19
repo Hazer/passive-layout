@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'passive-layout'
+    bintrayOrg = 'levelmoney'
+
+    publishedGroupId = 'com.levelmoney.passive-layout'
+    libraryName = 'Passive Layout'
+    artifact = 'passive-layout'
+
+    libraryDescription = 'Android layouts that selectively respect match_parent.'
+
+    siteUrl = 'https://github.com/levelmoney/passive-layout'
+    gitUrl = 'https://github.com/levelmoney/passive-layout.git'
+    issueUrl = 'https://github.com/Levelmoney/passive-layout/issues'
+
+    libraryVersion = '0.9'
+
+    developerId = 'levelmoney'
+    developerName = 'Aaron Sarazan'
+    developerEmail = 'aaron@levelmoney.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+apply from: 'https://raw.githubusercontent.com/levelmoney/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/levelmoney/JCenter/master/bintrayv1.gradle'

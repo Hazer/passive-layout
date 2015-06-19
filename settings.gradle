@@ -1,1 +1,2 @@
-include ':passive-layout'
+include ':library'
+rootProject.name = 'parent'
